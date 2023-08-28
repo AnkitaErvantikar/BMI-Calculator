@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    text-align: center;
+    margin-top: 100px;
+    width: 200px;
+    height: 200px;
+    background-color: #3498db;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 20px;
+    
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>BMI Calculator</h2>
+  <label for="weight">Weight (kg):</label>
+  <input type="number" id="weight" step="0.01" required><br><br>
+  
+  <label for="height">Height (cm):</label>
+  <input type="number" id="height" step="0.01" required><br><br>
+  
+  <button onclick="calculateBMI()">Calculate BMI</button><br><br>
+  
+  <p>Your BMI: <span id="bmiResult"></span></p>
+  <p id="bmiCategory"></p>
+</div>
+
+<script>
+function calculateBMI() {
+  const weight = parseFloat(document.getElementById("weight").value);
+  const height = parseFloat(document.getElementById("height").value) / 100; // Convert to meters
+  const bmi = weight / (height * height);
+  
+  document.getElementById("bmiResult").textContent = bmi.toFixed(2);
+  
+  let category = "";
+  if (bmi < 18.5) {
+    category = "Underweight";
+  } else if (bmi < 24.9) {
+    category = "Normal Weight";
+  } else if (bmi < 29.9) {
+    category = "Overweight";
+  } else {
+    category = "Obese";
+  }
+  
+  document.getElementById("bmiCategory").textContent = `Category: ${category}`;
+}
+</script>
+
+</body>
+</html>
